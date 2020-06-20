@@ -36,6 +36,10 @@ async function run() {
     }
     console.log(`name: ${name}`);
     console.log(`version: ${version}`);
+    let splitted = specFile.split("/");
+    let specFileName = splitted[splitted.length-1];
+    console.log(`specFileName: ${specFileName}`);
+
 
     // setup rpm tree
     await exec.exec('rpmdev-setuptree');
@@ -63,9 +67,6 @@ async function run() {
 
     // Execute rpmbuild , -ba generates both RPMS and SPRMS
     try {
-      let splitted = specFile.split("/");
-      let specFileName = splitted[splitted.length-1];
-      console.log(`specFileName: ${specFileName}`);
       await exec.exec(
         `rpmbuild -ba /github/home/rpmbuild/SPECS/${specFileName}`
       );
