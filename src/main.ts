@@ -65,6 +65,7 @@ async function run() {
     try {
       let splitted = specFile.split("/");
       let specFileName = splitted[splitted.length-1];
+      console.log(`specFileName: ${specFileName}`);
       await exec.exec(
         `rpmbuild -ba /github/home/rpmbuild/SPECS/${specFileName}`
       );
