@@ -19,6 +19,7 @@ async function run() {
     // get inputs from workflow
     // specFile name
     const specFile = core.getInput('spec_file');
+    const arch = core.getInput('arch');
 
     // Read spec file and get values 
     var data = fs.readFileSync(specFile, 'utf8');
@@ -68,7 +69,7 @@ async function run() {
     // Execute rpmbuild , -ba generates both RPMS and SPRMS
     try {
       await exec.exec(
-        `rpmbuild -ba /github/home/rpmbuild/SPECS/${specFileName}`
+      `rpmbuild -ba /github/home/rpmbuild/SPECS/${specFileName} --target ${arch}`
       );
     } catch (err) {
       core.setFailed(`action failed with error: ${err}`);
