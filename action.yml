@@ -8,6 +8,11 @@ inputs:
     required: true
     default: '*.spec'                     #Any spec file in top 
 
+  arch:
+    description: 'target architecture'
+    required: true
+    default: "x86_64"
+
 outputs:
   source_rpm_path:
     description: 'path to Source RPM file'
